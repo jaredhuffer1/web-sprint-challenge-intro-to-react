@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Character from './Character';
+import Character from './components/Character';
+
 
 
   // Try to think through what state you'll need for this app before starting. Then build out
@@ -27,7 +28,7 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
-      {characters.map((character) => (
+      {characters && characters.map((character) => (
         <Character key={character.name} character={character} />
         ))}
     </div>
