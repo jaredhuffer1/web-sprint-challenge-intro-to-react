@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Character from './components/Character';
-import './App.css'
+import './App.css';
+import { data } from './mocks/handlers'; 
 
 
 
@@ -12,30 +13,23 @@ import './App.css'
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
   
-
-
-const App = () => {
-  const [characters, setCharacters] = useState([]);
-
-  useEffect(() => {
-    const fetchCharacters = async () => {
-      const response = await fetch('https://swapi.dev/api/people/');
-      const data = await response.json();
-      setCharacters(data.results);
-    };
-
-    fetchCharacters();
-  }, []);
-
-  return (
-    <div className="App">
-      <h1 className="Header">Characters</h1>
-      {characters && characters.map((character) => (
-        <Character key={character.name} character={character} />
+  
+  const App = () => {
+    const [characters, setCharacters] = useState([]);
+  
+    useEffect(() => {
+      setCharacters(data);
+    }, []);
+  
+    return (
+      <div className="App">
+        <h1 className="Header">Characters</h1>
+        {characters && characters.map((character) => (
+          <Character key={character.name} character={character} />
         ))}
-    </div>
-    
-  );
-};
-
-export default App;
+      </div>
+    );
+  };
+  
+  export default App;
+  
